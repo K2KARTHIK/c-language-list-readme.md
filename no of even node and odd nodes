@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+int main()
+{
+    int n;
+    printf("Enter the number of Nodes: ");
+    scanf("%d",&n);
+    struct node *new_node,*start,*temp;
+    new_node = (struct node*)malloc(sizeof(struct node));
+    printf("Enter Data in node 1: ");
+    scanf("%d",&new_node->data);
+    start = new_node;
+    temp = start;
+    temp->next = NULL;
+    if(n>=2)
+    {
+        temp = start;
+        for(int i=2;i<=n;i++)
+        {
+            new_node = (struct node*)malloc(sizeof(struct node));
+            printf("Enter Data in node %d: ",i);
+            scanf("%d",&new_node->data);
+            temp->next = new_node;
+            temp = temp->next;
+            temp->next = NULL;
+        }
+
+    }
+    temp=start;
+    int count=0,flag=0;
+    while(temp != NULL)
+    {
+        if(temp->data % 2 == 0)
+        {
+            count++;
+        }
+        else
+        {
+            flag++;
+        }
+        temp=temp->next;
+    }
+    printf("%d %d",count,flag);
+}
+
+
+
+
+
+
+// in put:
+// Enter the number of Nodes: 5
+// Enter Data in node 1: 0
+// Enter Data in node 2: 1
+// Enter Data in node 3: 2
+// Enter Data in node 4: 3
+// Enter Data in node 5: 4
+
+// output:
+// 3 2
