@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node* next;
+};
+
+int main() {
+    int n;
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    struct node* new_node;
+    struct node* start = NULL;
+    struct node* temp;
+    struct node* temp1;
+    struct node* temp2;
+
+    new_node = (struct node*)malloc(sizeof(struct node));
+    printf("Enter data in node 1: ");
+    scanf("%d", &new_node->data);
+    start = new_node;
+    temp = start;
+    temp->next = NULL;
+
+    if (n >= 2) {
+        temp = start;
+        for (int i = 2; i <= n; i++) {
+            new_node = (struct node*)malloc(sizeof(struct node));
+            printf("Enter data in node %d: ", i);
+            scanf("%d", &new_node->data);
+            temp->next = new_node;
+            temp = temp->next;
+            temp->next = NULL;
+        }
+    }
+
+    temp = start;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    temp1 = start;
+    temp2 = temp1->next;
+
+    while (temp1 != NULL) {
+        if (temp2 == NULL) {
+            break;
+        }
+        if (temp1->data != temp2->data) {
+            temp1 = temp2;
+            temp2 = temp2->next;
+        } else {
+            temp1->next = temp2->next;
+            free(temp2);
+            temp2 = temp1->next;
+        }
+        if (temp2 != NULL) {
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+    }
+
+    temp1 = start;
+    printf("\nLinked List after removing duplicates:\n");
+    while (temp1 != NULL) {
+        printf("%d ", temp1->data);
+        temp1 = temp1->next;
+    }
+
+    return 0;
+}
