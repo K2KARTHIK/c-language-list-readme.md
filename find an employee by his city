@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+struct employee{
+    int eid;
+    char name[200];
+    int salary;
+    char address[200];
+};
+int main()
+{
+  int n;
+  printf("enter the no of the employee :");
+  scanf("%d",&n);
+  struct employee p1[n];
+  int i;
+  for(i=0;i<n;i++)
+  {
+  
+    scanf("%d%s%d%s",&p1[i].eid,&p1[i].name,&p1[i].salary,&p1[i].address);
+ 
+  }
+  char area[200];
+  printf("enter the area of the employee :");
+  scanf("%s",area);
+  for(i=0;i<n;i++)
+  {
+    if(strcmp(p1[i].address,area)==0)
+    {
+      printf("%d  %s",p1[i].eid,p1[i].name);
+    }
+  }
+}
+
+
+
+
+
+
+
+// input:
+// enter the no of the employee :3
+// 123 rat 2000 hyd
+// 124 cat 2500 chennai
+// 125 dog 3000 mumbai
+// enter the area of the employee :mumbai
+
+// output:
+// 125  dog
